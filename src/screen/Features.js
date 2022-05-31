@@ -1,6 +1,7 @@
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, ScrollView, FlatList, Image } from 'react-native'
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, ScrollView, FlatList, Image, Sea } from 'react-native'
 import React, {useState, useEffect, useContext} from 'react'
 import { CourseContext } from '../context/CourseProviderContext';
+import { AuthContext } from '../context/AuthContextProvider'
 import axios from 'axios';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -10,6 +11,8 @@ import IconButton from 'react-native-vector-icons/dist/lib/icon-button';
 
 const Features = ({navigation}) => {
 
+  const { user } = useContext(AuthContext)
+
   const [devCourses,setCourses] = useState([])
   const [recommendCourses,setRecommendCourses] = useState([])
   const [featureCourses, setFeatureCourses] = useState([])
@@ -17,7 +20,7 @@ const Features = ({navigation}) => {
   const [reload,setReload] = useState([])
 
   useEffect(() => {
-    axios.get('http://192.168.1.10:3457/json/courses')
+    axios.get('http:192.168.1.56:3457/json/courses')
     .then( async(response) => {
         const courses = response.data.slice(0,5)
         const recommendCourses = response.data.slice(5,10)
@@ -37,7 +40,6 @@ const Features = ({navigation}) => {
   },[reload])
 
   const { course, setCourse } = useContext(CourseContext)
-
   
   function headerTab() {
     const {headerTabContainer, input} = styles
@@ -49,9 +51,8 @@ const Features = ({navigation}) => {
           fontWeight: 'bold',
           fontSize: 18,
           color: 'white',
-          paddingTop: 20,
           marginLeft: 20,
-        }}>Hello dofight</Text>
+        }}>Hello {user.username}</Text>
         
         <Text style={{
           marginLeft: 20,
@@ -62,7 +63,6 @@ const Features = ({navigation}) => {
         style={input}
         placeholder= "Search here"
         />
-
       </View>
     )
   }
@@ -376,7 +376,7 @@ const styles = StyleSheet.create({
   headerTabContainer: {
     backgroundColor: '#000080',
     height: 100,
-    justifyContent: 'center',
+    // justifyContent: 'center',
     color: 'red'
   },
 textStyle: {
@@ -403,7 +403,7 @@ input: {
   margin: 12,
   borderWidth: 1,
   padding: 10,
-  marginBottom: 25
+  // marginBottom: 25
 },
 buttonCategory: {
   borderWidth: 1,

@@ -16,7 +16,7 @@ const Login = ({navigation}) => {
 
   const onLoggedIn = async (id) => {
     console.log(id)
-    await axios.get(`http:///192.168.1.10:3457/userinformation/${id}`).then(res => {
+    await axios.get(`http:192.168.1.56:3457/userinformation/${id}`).then(res => {
       if(res.status == 401) {
         console.log('lỗi 401')
       }
@@ -36,7 +36,7 @@ const Login = ({navigation}) => {
   const loginButton = async() => {
     const payLoad = JSON.stringify({ username, password })
     console.log('username and pasword:  ',payLoad)
-    await axios.post('http://192.168.1.10:3457/loginapp',payLoad, {
+    await axios.post('http:192.168.1.56:3457/loginapp',payLoad, {
       headers: {
         'Content-Type': 'application/json'
       }

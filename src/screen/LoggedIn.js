@@ -13,7 +13,7 @@ const LoggedIn = ({navigation}) => {
   },[])
 
   const logout = () => {
-    axios.post('http://192.168.1.10:3457/logoutapp').then(res =>  {
+    axios.post('http:192.168.1.56:3457/logoutapp').then(res =>  {
       if(res.status == 200){
       setUser([])
       navigation.navigate('Account')

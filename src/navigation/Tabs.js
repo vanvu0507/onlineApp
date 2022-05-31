@@ -3,7 +3,6 @@ import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
 import React, {useContext} from 'react';
 
 import Features from '../screen/Features';
-import Chat from '../screen/Chat';
 import MyCourses from '../screen/MyCourses';
 import WishList from '../screen/WishList';
 import Account from '../screen/Account';
@@ -12,6 +11,7 @@ import Login from '../screen/Login';
 import LoggedIn from '../screen/LoggedIn';
 import {AuthContext} from '../context/AuthContextProvider'
 import DetailCourse from '../screen/DetailCourse';
+import Search from '../screen/Search';
 const Tab = createBottomTabNavigator();
 
 const Tabs = () => {
@@ -58,13 +58,13 @@ const Tabs = () => {
         }}
       />
       <Tab.Screen
-        name="Chat"
-        component={Chat}
+        name="Search"
+        component={Search}
         options={{
           tabBarIcon: ({focused}) => (
             <View style={{alignItems: 'center', justifyContent: 'center', top: 10}}>
               <Image
-              source={require('../../assets/icons/chat.png')}
+              source={require('../../assets/icons/searching-magnifying-glass.png')}
               resizeMode="contain"
               style={{
                 width: 25,
@@ -73,7 +73,7 @@ const Tabs = () => {
               }} />
               <Text
               style={{color: focused ? '#e32f45' : '#748c94', fontSize: 12,fontWeight: 'bold'}}>
-                CHAT
+                SEARCH
               </Text>
             </View>
           ),
